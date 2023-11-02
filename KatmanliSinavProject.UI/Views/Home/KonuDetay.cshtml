@@ -1,0 +1,52 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.MakaleVMs;
+@model IEnumerable<MakaleVM>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="col-md-6">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Makale Başlığı</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (MakaleVM item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+}
+else
+{
+    <div class="col-md-6">
+        <a asp-controller="Account" asp-action="Register" class="btn btn-warning">Makale Eklemek İçin Kayıt Ol</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Makale Başlığı</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (MakaleVM item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+}

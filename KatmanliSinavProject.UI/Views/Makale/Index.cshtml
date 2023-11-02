@@ -1,0 +1,39 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.MakaleVMs;
+@model IEnumerable<MakaleVM>
+
+<a asp-action="MakaleAdd" class="btn btn-primary">Makale Ekle</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Makale Başlık</th>
+            <th>Konu</th>
+            <th>Yazarı</th>
+            <th>Ortalama Okunma süresi
+
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (MakaleVM item in Model)
+        {
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.Baslik</td>
+                <td>@item.Konu.Baslik</td>
+                <td>@item.AppUser.FirstName  @item.AppUser.LastName</td>
+                <td>@item.OrtalamaOkumaSuresi.ToString("F2") </td>
+
+
+                <td>
+                    <a asp-controller="Makale" asp-action="MakaleEdit" asp-route-Id="@item.Id" class="btn btn-warning "> Edit</a>
+                    <a asp-controller="Home" asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">Makale Detay</a>
+                    <a asp-controller="Makale" asp-action="MakaleDelete" asp-route-Id="@item.Id" class="btn btn-danger"> Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

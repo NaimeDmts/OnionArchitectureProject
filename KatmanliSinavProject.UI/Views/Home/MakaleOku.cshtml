@@ -1,0 +1,14 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.MakaleVMs;
+@model MakaleVM
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>@Model.Baslik</h2>
+            <p>Konu: @Model.Konu.Baslik</p>
+            <p>İçerik: @Model.Icerik</p>
+            <p>Yazar: @Model.AppUser.FirstName @Model.AppUser.LastName</p>
+            <p>Ortalama Okunma Süresi: @Model.OrtalamaOkumaSuresi.ToString("F2")</p>
+            <p>Yayınlanma Tarihi: @Model.MakaleYazimTarihi</p>
+        </div>
+    </div>
+</div>

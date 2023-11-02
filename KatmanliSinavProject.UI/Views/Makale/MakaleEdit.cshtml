@@ -1,0 +1,34 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.MakaleVMs;
+@model MakaleUpdateVM
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="MakaleEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Baslik" class="control-label"></label>
+                <input asp-for="Baslik" class="form-control"></input>
+                <span asp-validation-for="Baslik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icerik" class="control-label"></label>
+                <input asp-for="Icerik" class="form-control"></input>
+                <span asp-validation-for="Icerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KonuId" class="control-label"></label>
+                <select asp-for="KonuId" asp-items="@(new SelectList(Model.Konus,"Id","Baslik"))" class="form-control">
+                </select>
+                <span asp-validation-for="KonuId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

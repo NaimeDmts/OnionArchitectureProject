@@ -1,0 +1,41 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.KonuVMs;
+@model IEnumerable<KonuVM>
+
+<a asp-action="KonuAdd" class="btn btn-primary">Konu Ekle</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Konu Adı
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Baslik)
+                </td>
+                <td>
+                    <a asp-action="KonuEdit" asp-route-Id="@item.Id" class="btn btn-warning "> Edit</a>
+                    <a asp-controller="Home" asp-action="KonuDetay" asp-route-Id="@item.Id" class="text-black">Konu Makale</a>
+                    <a asp-action="KonuDelete" asp-route-Id="@item.Id" class="btn btn-danger"> Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+<a asp-controller="Makale" asp-action="KonuAdd" class="btn btn-primary">Makale Ekle</a>

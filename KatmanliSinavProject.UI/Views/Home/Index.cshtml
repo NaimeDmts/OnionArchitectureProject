@@ -1,0 +1,148 @@
+﻿@using KatmanliSinavProject.UI.Models.ViewModels.KonuVMs;
+@using KatmanliSinavProject.UI.Models.ViewModels.MakaleVMs;
+@model IEnumerable<MakaleVM>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    <a asp-controller="Makale" asp-action="MakaleAdd" class="btn btn-primary">Makale Ekle</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Makale Başlık</th>
+                <th>Konu</th>
+                <th>Yazarı</th>
+                <th>
+                    Ortalama Okunma süresi
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (MakaleVM item in ViewBag.UserMakale)
+            {
+                <tr>
+
+                    <td>@item.Id</td>
+                    <td>@item.Baslik</td>
+                    <td>@item.Konu.Baslik</td>
+                    <td>@item.AppUser.FirstName  @item.AppUser.LastName</td>
+                    <td>@item.OrtalamaOkumaSuresi.ToString("F2") </td>
+
+
+                    <td>
+                        <a asp-controller="Makale" asp-action="MakaleEdit" asp-route-Id="@item.Id" class="btn btn-warning "> Edit</a>
+                        <a asp-controller="Home" asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">Makale Detay</a>
+                        <a asp-controller="Makale" asp-action="MakaleDelete" asp-route-Id="@item.Id" class="btn btn-danger"> Delete</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Makale Başlığı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MakaleVM item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Konu Başlığı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KonuVM item in ViewBag.konu)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-action="KonuDetay" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+else{
+
+    <div class="container">
+        <div class="row">
+            <a asp-controller="Account" asp-action="Register" class="btn btn-warning">Makale Eklemek İçin Kayıt Ol</a>
+            <div class="col-md-6">
+              
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Makale Başlığı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (MakaleVM item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-action="MakaleOku" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Konu Başlığı</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KonuVM item in ViewBag.konu)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-action="KonuDetay" asp-route-Id="@item.Id" class="text-black">@item.Baslik</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+}
